@@ -1,0 +1,31 @@
+---
+- name: swap - create path
+  file:
+    dest: "{{ common_swap_path }}"
+    owner: root
+    group: root
+    mode: 0600
+    state: directory
+  sudo: yes
+
+- name: swap - create swap file
+  command: dd if=/dev/zero of={{ common_swap_path }}/swap.block bs=1M count={{ common_swap_size }}
+    creates="{{ common_swap_path }}/swap.block"
+  sudo: yes
+
+- name: swap - make swap
+  command: mkswap {{ common_swap_path }}/swap.block
+  sudo: yes
+
+- name: swap - add to fstab
+  mount:
+    name: swap
+    src: "{{ common_swap_path }}/swap.block"
+    fstype: swap
+    state: present
+  when: common_swap_fstab
+  sudo: yes
+
+- name: swap - swap on
+  command: swapon -a
+  sudo: yes

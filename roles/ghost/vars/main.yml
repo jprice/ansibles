@@ -1,0 +1,8 @@
+---
+# vars file for LukeT.ghost
+
+ghost_path: '/opt/slimer'
+ghost_port: '2368'
+ghost_ver: 'latest'
+ghost_url: '{{ ansible_eth0.ipv4.address }}'
+site_type: 'production'

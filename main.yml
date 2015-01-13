@@ -1,0 +1,12 @@
+---
+- hosts: all
+  roles:
+  -	build-essenctial
+  - git
+  - nodejs
+  - python
+  - rvm
+  - vim
+  - apache
+  - php
+  - mysql

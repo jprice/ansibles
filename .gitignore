@@ -10,3 +10,4 @@ test
 *.bak
 *.sublime-*
 private/*
+*~*
